@@ -22,6 +22,13 @@ class DimondKataTest extends FunSuite with Matchers with PropertyChecks {
     }
   }
 
-  
+  test("property: all dimond's lines are of the same size") {
+    forAll(char) { ch =>
+      val d = dimond(ch)
+      d.foreach { line =>
+        line.size should equal(d(0).size)
+      }
+    }
+  }
 
 }
