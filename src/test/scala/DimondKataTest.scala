@@ -12,8 +12,16 @@ class DimondKataTest extends FunSuite with Matchers with PropertyChecks {
 
   test("property: dimond's number of lines equal to twice char index + 1") {
     forAll(char) { ch =>
-      dimond(ch).size should equal((charIdx(ch) * 2)+1)
+      dimond(ch).size should equal((charIdx(ch) * 2) + 1)
     }
   }
+
+  test("property: dimond has a non-zero number of lines") {
+    forAll(char) { ch =>
+      dimond(ch).size should not(equal(0))
+    }
+  }
+
+  
 
 }
