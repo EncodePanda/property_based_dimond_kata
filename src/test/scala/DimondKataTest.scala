@@ -38,7 +38,15 @@ class DimondKataTest extends FunSuite with Matchers with PropertyChecks {
     }
   }
 
-  
+  test("property: first line  has always 'A' in the middle") {
+    property { case (char, dimond) =>
+      val firstLine = dimond(0)
+      firstLine(DimondKata.middle(char)) should equal('A')
+      (firstLine.take(dimond.size/2) ++ firstLine.drop(dimond.size/2 + 1)).filter(_ != ' ').size should equal(0)
+    }
+  }
+
+
 
   def property(check: (Char, List[Line]) => Unit) = {
     forAll(chars) { char =>
